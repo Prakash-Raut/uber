@@ -64,6 +64,8 @@ export type BookingMinAggregateOutputType = {
 	cancelledAt: Date | null;
 	rating: number | null;
 	feedback: string | null;
+	createdAt: Date | null;
+	updatedAt: Date | null;
 };
 
 export type BookingMaxAggregateOutputType = {
@@ -85,6 +87,8 @@ export type BookingMaxAggregateOutputType = {
 	cancelledAt: Date | null;
 	rating: number | null;
 	feedback: string | null;
+	createdAt: Date | null;
+	updatedAt: Date | null;
 };
 
 export type BookingCountAggregateOutputType = {
@@ -107,6 +111,8 @@ export type BookingCountAggregateOutputType = {
 	rating: number;
 	feedback: number;
 	metadata: number;
+	createdAt: number;
+	updatedAt: number;
 	_all: number;
 };
 
@@ -149,6 +155,8 @@ export type BookingMinAggregateInputType = {
 	cancelledAt?: true;
 	rating?: true;
 	feedback?: true;
+	createdAt?: true;
+	updatedAt?: true;
 };
 
 export type BookingMaxAggregateInputType = {
@@ -170,6 +178,8 @@ export type BookingMaxAggregateInputType = {
 	cancelledAt?: true;
 	rating?: true;
 	feedback?: true;
+	createdAt?: true;
+	updatedAt?: true;
 };
 
 export type BookingCountAggregateInputType = {
@@ -192,6 +202,8 @@ export type BookingCountAggregateInputType = {
 	rating?: true;
 	feedback?: true;
 	metadata?: true;
+	createdAt?: true;
+	updatedAt?: true;
 	_all?: true;
 };
 
@@ -308,6 +320,8 @@ export type BookingGroupByOutputType = {
 	rating: number | null;
 	feedback: string | null;
 	metadata: runtime.JsonValue | null;
+	createdAt: Date;
+	updatedAt: Date;
 	_count: BookingCountAggregateOutputType | null;
 	_avg: BookingAvgAggregateOutputType | null;
 	_sum: BookingSumAggregateOutputType | null;
@@ -351,6 +365,8 @@ export type BookingWhereInput = {
 	rating?: Prisma.IntNullableFilter<"Booking"> | number | null;
 	feedback?: Prisma.StringNullableFilter<"Booking"> | string | null;
 	metadata?: Prisma.JsonNullableFilter<"Booking">;
+	createdAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
+	updatedAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
 	passenger?: Prisma.XOR<
 		Prisma.UserScalarRelationFilter,
 		Prisma.UserWhereInput
@@ -381,6 +397,8 @@ export type BookingOrderByWithRelationInput = {
 	rating?: Prisma.SortOrderInput | Prisma.SortOrder;
 	feedback?: Prisma.SortOrderInput | Prisma.SortOrder;
 	metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+	createdAt?: Prisma.SortOrder;
+	updatedAt?: Prisma.SortOrder;
 	passenger?: Prisma.UserOrderByWithRelationInput;
 	driver?: Prisma.UserOrderByWithRelationInput;
 };
@@ -421,6 +439,8 @@ export type BookingWhereUniqueInput = Prisma.AtLeast<
 		rating?: Prisma.IntNullableFilter<"Booking"> | number | null;
 		feedback?: Prisma.StringNullableFilter<"Booking"> | string | null;
 		metadata?: Prisma.JsonNullableFilter<"Booking">;
+		createdAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
+		updatedAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
 		passenger?: Prisma.XOR<
 			Prisma.UserScalarRelationFilter,
 			Prisma.UserWhereInput
@@ -453,6 +473,8 @@ export type BookingOrderByWithAggregationInput = {
 	rating?: Prisma.SortOrderInput | Prisma.SortOrder;
 	feedback?: Prisma.SortOrderInput | Prisma.SortOrder;
 	metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+	createdAt?: Prisma.SortOrder;
+	updatedAt?: Prisma.SortOrder;
 	_count?: Prisma.BookingCountOrderByAggregateInput;
 	_avg?: Prisma.BookingAvgOrderByAggregateInput;
 	_max?: Prisma.BookingMaxOrderByAggregateInput;
@@ -514,6 +536,8 @@ export type BookingScalarWhereWithAggregatesInput = {
 		| string
 		| null;
 	metadata?: Prisma.JsonNullableWithAggregatesFilter<"Booking">;
+	createdAt?: Prisma.DateTimeWithAggregatesFilter<"Booking"> | Date | string;
+	updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Booking"> | Date | string;
 };
 
 export type BookingCreateInput = {
@@ -534,6 +558,8 @@ export type BookingCreateInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 	passenger: Prisma.UserCreateNestedOneWithoutPassengerBookingsInput;
 	driver?: Prisma.UserCreateNestedOneWithoutDriverBookingsInput;
 };
@@ -558,6 +584,8 @@ export type BookingUncheckedCreateInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingUpdateInput = {
@@ -596,6 +624,8 @@ export type BookingUpdateInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	passenger?: Prisma.UserUpdateOneRequiredWithoutPassengerBookingsNestedInput;
 	driver?: Prisma.UserUpdateOneWithoutDriverBookingsNestedInput;
 };
@@ -638,6 +668,8 @@ export type BookingUncheckedUpdateInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingCreateManyInput = {
@@ -660,6 +692,8 @@ export type BookingCreateManyInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingUpdateManyMutationInput = {
@@ -698,6 +732,8 @@ export type BookingUpdateManyMutationInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingUncheckedUpdateManyInput = {
@@ -738,6 +774,8 @@ export type BookingUncheckedUpdateManyInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingListRelationFilter = {
@@ -770,6 +808,8 @@ export type BookingCountOrderByAggregateInput = {
 	rating?: Prisma.SortOrder;
 	feedback?: Prisma.SortOrder;
 	metadata?: Prisma.SortOrder;
+	createdAt?: Prisma.SortOrder;
+	updatedAt?: Prisma.SortOrder;
 };
 
 export type BookingAvgOrderByAggregateInput = {
@@ -801,6 +841,8 @@ export type BookingMaxOrderByAggregateInput = {
 	cancelledAt?: Prisma.SortOrder;
 	rating?: Prisma.SortOrder;
 	feedback?: Prisma.SortOrder;
+	createdAt?: Prisma.SortOrder;
+	updatedAt?: Prisma.SortOrder;
 };
 
 export type BookingMinOrderByAggregateInput = {
@@ -822,6 +864,8 @@ export type BookingMinOrderByAggregateInput = {
 	cancelledAt?: Prisma.SortOrder;
 	rating?: Prisma.SortOrder;
 	feedback?: Prisma.SortOrder;
+	createdAt?: Prisma.SortOrder;
+	updatedAt?: Prisma.SortOrder;
 };
 
 export type BookingSumOrderByAggregateInput = {
@@ -1030,14 +1074,6 @@ export type FloatFieldUpdateOperationsInput = {
 	divide?: number;
 };
 
-export type NullableFloatFieldUpdateOperationsInput = {
-	set?: number | null;
-	increment?: number;
-	decrement?: number;
-	multiply?: number;
-	divide?: number;
-};
-
 export type NullableIntFieldUpdateOperationsInput = {
 	set?: number | null;
 	increment?: number;
@@ -1068,6 +1104,8 @@ export type BookingCreateWithoutPassengerInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 	driver?: Prisma.UserCreateNestedOneWithoutDriverBookingsInput;
 };
 
@@ -1090,6 +1128,8 @@ export type BookingUncheckedCreateWithoutPassengerInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingCreateOrConnectWithoutPassengerInput = {
@@ -1125,6 +1165,8 @@ export type BookingCreateWithoutDriverInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 	passenger: Prisma.UserCreateNestedOneWithoutPassengerBookingsInput;
 };
 
@@ -1147,6 +1189,8 @@ export type BookingUncheckedCreateWithoutDriverInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingCreateOrConnectWithoutDriverInput = {
@@ -1215,6 +1259,8 @@ export type BookingScalarWhereInput = {
 	rating?: Prisma.IntNullableFilter<"Booking"> | number | null;
 	feedback?: Prisma.StringNullableFilter<"Booking"> | string | null;
 	metadata?: Prisma.JsonNullableFilter<"Booking">;
+	createdAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
+	updatedAt?: Prisma.DateTimeFilter<"Booking"> | Date | string;
 };
 
 export type BookingUpsertWithWhereUniqueWithoutDriverInput = {
@@ -1264,6 +1310,8 @@ export type BookingCreateManyPassengerInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingCreateManyDriverInput = {
@@ -1285,6 +1333,8 @@ export type BookingCreateManyDriverInput = {
 	rating?: number | null;
 	feedback?: string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 };
 
 export type BookingUpdateWithoutPassengerInput = {
@@ -1323,6 +1373,8 @@ export type BookingUpdateWithoutPassengerInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	driver?: Prisma.UserUpdateOneWithoutDriverBookingsNestedInput;
 };
 
@@ -1363,6 +1415,8 @@ export type BookingUncheckedUpdateWithoutPassengerInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingUncheckedUpdateManyWithoutPassengerInput = {
@@ -1402,6 +1456,8 @@ export type BookingUncheckedUpdateManyWithoutPassengerInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingUpdateWithoutDriverInput = {
@@ -1440,6 +1496,8 @@ export type BookingUpdateWithoutDriverInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	passenger?: Prisma.UserUpdateOneRequiredWithoutPassengerBookingsNestedInput;
 };
 
@@ -1480,6 +1538,8 @@ export type BookingUncheckedUpdateWithoutDriverInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingUncheckedUpdateManyWithoutDriverInput = {
@@ -1519,6 +1579,8 @@ export type BookingUncheckedUpdateManyWithoutDriverInput = {
 	rating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BookingSelect<
@@ -1545,6 +1607,8 @@ export type BookingSelect<
 		rating?: boolean;
 		feedback?: boolean;
 		metadata?: boolean;
+		createdAt?: boolean;
+		updatedAt?: boolean;
 		passenger?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 		driver?: boolean | Prisma.Booking$driverArgs<ExtArgs>;
 	},
@@ -1575,6 +1639,8 @@ export type BookingSelectCreateManyAndReturn<
 		rating?: boolean;
 		feedback?: boolean;
 		metadata?: boolean;
+		createdAt?: boolean;
+		updatedAt?: boolean;
 		passenger?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 		driver?: boolean | Prisma.Booking$driverArgs<ExtArgs>;
 	},
@@ -1605,6 +1671,8 @@ export type BookingSelectUpdateManyAndReturn<
 		rating?: boolean;
 		feedback?: boolean;
 		metadata?: boolean;
+		createdAt?: boolean;
+		updatedAt?: boolean;
 		passenger?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 		driver?: boolean | Prisma.Booking$driverArgs<ExtArgs>;
 	},
@@ -1631,6 +1699,8 @@ export type BookingSelectScalar = {
 	rating?: boolean;
 	feedback?: boolean;
 	metadata?: boolean;
+	createdAt?: boolean;
+	updatedAt?: boolean;
 };
 
 export type BookingOmit<
@@ -1655,7 +1725,9 @@ export type BookingOmit<
 	| "cancelledAt"
 	| "rating"
 	| "feedback"
-	| "metadata",
+	| "metadata"
+	| "createdAt"
+	| "updatedAt",
 	ExtArgs["result"]["booking"]
 >;
 export type BookingInclude<
@@ -1710,6 +1782,8 @@ export type $BookingPayload<
 			rating: number | null;
 			feedback: string | null;
 			metadata: runtime.JsonValue | null;
+			createdAt: Date;
+			updatedAt: Date;
 		},
 		ExtArgs["result"]["booking"]
 	>;
@@ -2348,6 +2422,8 @@ export interface BookingFieldRefs {
 	readonly rating: Prisma.FieldRef<"Booking", "Int">;
 	readonly feedback: Prisma.FieldRef<"Booking", "String">;
 	readonly metadata: Prisma.FieldRef<"Booking", "Json">;
+	readonly createdAt: Prisma.FieldRef<"Booking", "DateTime">;
+	readonly updatedAt: Prisma.FieldRef<"Booking", "DateTime">;
 }
 
 // Custom InputTypes

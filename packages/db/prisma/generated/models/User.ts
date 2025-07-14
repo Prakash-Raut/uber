@@ -19,8 +19,20 @@ export type UserModel =
 
 export type AggregateUser = {
 	_count: UserCountAggregateOutputType | null;
+	_avg: UserAvgAggregateOutputType | null;
+	_sum: UserSumAggregateOutputType | null;
 	_min: UserMinAggregateOutputType | null;
 	_max: UserMaxAggregateOutputType | null;
+};
+
+export type UserAvgAggregateOutputType = {
+	latitude: number | null;
+	longitude: number | null;
+};
+
+export type UserSumAggregateOutputType = {
+	latitude: number | null;
+	longitude: number | null;
 };
 
 export type UserMinAggregateOutputType = {
@@ -32,6 +44,8 @@ export type UserMinAggregateOutputType = {
 	createdAt: Date | null;
 	updatedAt: Date | null;
 	role: $Enums.UserRole | null;
+	latitude: number | null;
+	longitude: number | null;
 };
 
 export type UserMaxAggregateOutputType = {
@@ -43,6 +57,8 @@ export type UserMaxAggregateOutputType = {
 	createdAt: Date | null;
 	updatedAt: Date | null;
 	role: $Enums.UserRole | null;
+	latitude: number | null;
+	longitude: number | null;
 };
 
 export type UserCountAggregateOutputType = {
@@ -54,7 +70,19 @@ export type UserCountAggregateOutputType = {
 	createdAt: number;
 	updatedAt: number;
 	role: number;
+	latitude: number;
+	longitude: number;
 	_all: number;
+};
+
+export type UserAvgAggregateInputType = {
+	latitude?: true;
+	longitude?: true;
+};
+
+export type UserSumAggregateInputType = {
+	latitude?: true;
+	longitude?: true;
 };
 
 export type UserMinAggregateInputType = {
@@ -66,6 +94,8 @@ export type UserMinAggregateInputType = {
 	createdAt?: true;
 	updatedAt?: true;
 	role?: true;
+	latitude?: true;
+	longitude?: true;
 };
 
 export type UserMaxAggregateInputType = {
@@ -77,6 +107,8 @@ export type UserMaxAggregateInputType = {
 	createdAt?: true;
 	updatedAt?: true;
 	role?: true;
+	latitude?: true;
+	longitude?: true;
 };
 
 export type UserCountAggregateInputType = {
@@ -88,6 +120,8 @@ export type UserCountAggregateInputType = {
 	createdAt?: true;
 	updatedAt?: true;
 	role?: true;
+	latitude?: true;
+	longitude?: true;
 	_all?: true;
 };
 
@@ -134,6 +168,18 @@ export type UserAggregateArgs<
 	/**
 	 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
 	 *
+	 * Select which fields to average
+	 **/
+	_avg?: UserAvgAggregateInputType;
+	/**
+	 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+	 *
+	 * Select which fields to sum
+	 **/
+	_sum?: UserSumAggregateInputType;
+	/**
+	 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+	 *
 	 * Select which fields to find the minimum value
 	 **/
 	_min?: UserMinAggregateInputType;
@@ -166,6 +212,8 @@ export type UserGroupByArgs<
 	take?: number;
 	skip?: number;
 	_count?: UserCountAggregateInputType | true;
+	_avg?: UserAvgAggregateInputType;
+	_sum?: UserSumAggregateInputType;
 	_min?: UserMinAggregateInputType;
 	_max?: UserMaxAggregateInputType;
 };
@@ -179,7 +227,11 @@ export type UserGroupByOutputType = {
 	createdAt: Date;
 	updatedAt: Date;
 	role: $Enums.UserRole;
+	latitude: number | null;
+	longitude: number | null;
 	_count: UserCountAggregateOutputType | null;
+	_avg: UserAvgAggregateOutputType | null;
+	_sum: UserSumAggregateOutputType | null;
 	_min: UserMinAggregateOutputType | null;
 	_max: UserMaxAggregateOutputType | null;
 };
@@ -208,6 +260,8 @@ export type UserWhereInput = {
 	createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
 	updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string;
 	role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole;
+	latitude?: Prisma.FloatNullableFilter<"User"> | number | null;
+	longitude?: Prisma.FloatNullableFilter<"User"> | number | null;
 	sessions?: Prisma.SessionListRelationFilter;
 	accounts?: Prisma.AccountListRelationFilter;
 	passengerBookings?: Prisma.BookingListRelationFilter;
@@ -223,6 +277,8 @@ export type UserOrderByWithRelationInput = {
 	createdAt?: Prisma.SortOrder;
 	updatedAt?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
+	latitude?: Prisma.SortOrderInput | Prisma.SortOrder;
+	longitude?: Prisma.SortOrderInput | Prisma.SortOrder;
 	sessions?: Prisma.SessionOrderByRelationAggregateInput;
 	accounts?: Prisma.AccountOrderByRelationAggregateInput;
 	passengerBookings?: Prisma.BookingOrderByRelationAggregateInput;
@@ -242,6 +298,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
 		createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
 		updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string;
 		role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole;
+		latitude?: Prisma.FloatNullableFilter<"User"> | number | null;
+		longitude?: Prisma.FloatNullableFilter<"User"> | number | null;
 		sessions?: Prisma.SessionListRelationFilter;
 		accounts?: Prisma.AccountListRelationFilter;
 		passengerBookings?: Prisma.BookingListRelationFilter;
@@ -259,9 +317,13 @@ export type UserOrderByWithAggregationInput = {
 	createdAt?: Prisma.SortOrder;
 	updatedAt?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
+	latitude?: Prisma.SortOrderInput | Prisma.SortOrder;
+	longitude?: Prisma.SortOrderInput | Prisma.SortOrder;
 	_count?: Prisma.UserCountOrderByAggregateInput;
+	_avg?: Prisma.UserAvgOrderByAggregateInput;
 	_max?: Prisma.UserMaxOrderByAggregateInput;
 	_min?: Prisma.UserMinOrderByAggregateInput;
+	_sum?: Prisma.UserSumOrderByAggregateInput;
 };
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -280,6 +342,8 @@ export type UserScalarWhereWithAggregatesInput = {
 	createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string;
 	updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string;
 	role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole;
+	latitude?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null;
+	longitude?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null;
 };
 
 export type UserCreateInput = {
@@ -291,6 +355,8 @@ export type UserCreateInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingCreateNestedManyWithoutPassengerInput;
@@ -306,6 +372,8 @@ export type UserUncheckedCreateInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutPassengerInput;
@@ -321,6 +389,8 @@ export type UserUpdateInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUpdateManyWithoutPassengerNestedInput;
@@ -336,6 +406,8 @@ export type UserUncheckedUpdateInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUncheckedUpdateManyWithoutPassengerNestedInput;
@@ -351,6 +423,8 @@ export type UserCreateManyInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 };
 
 export type UserUpdateManyMutationInput = {
@@ -362,6 +436,8 @@ export type UserUpdateManyMutationInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 };
 
 export type UserUncheckedUpdateManyInput = {
@@ -373,6 +449,8 @@ export type UserUncheckedUpdateManyInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 };
 
 export type UserCountOrderByAggregateInput = {
@@ -384,6 +462,13 @@ export type UserCountOrderByAggregateInput = {
 	createdAt?: Prisma.SortOrder;
 	updatedAt?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
+	latitude?: Prisma.SortOrder;
+	longitude?: Prisma.SortOrder;
+};
+
+export type UserAvgOrderByAggregateInput = {
+	latitude?: Prisma.SortOrder;
+	longitude?: Prisma.SortOrder;
 };
 
 export type UserMaxOrderByAggregateInput = {
@@ -395,6 +480,8 @@ export type UserMaxOrderByAggregateInput = {
 	createdAt?: Prisma.SortOrder;
 	updatedAt?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
+	latitude?: Prisma.SortOrder;
+	longitude?: Prisma.SortOrder;
 };
 
 export type UserMinOrderByAggregateInput = {
@@ -406,6 +493,13 @@ export type UserMinOrderByAggregateInput = {
 	createdAt?: Prisma.SortOrder;
 	updatedAt?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
+	latitude?: Prisma.SortOrder;
+	longitude?: Prisma.SortOrder;
+};
+
+export type UserSumOrderByAggregateInput = {
+	latitude?: Prisma.SortOrder;
+	longitude?: Prisma.SortOrder;
 };
 
 export type UserScalarRelationFilter = {
@@ -436,6 +530,14 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type EnumUserRoleFieldUpdateOperationsInput = {
 	set?: $Enums.UserRole;
+};
+
+export type NullableFloatFieldUpdateOperationsInput = {
+	set?: number | null;
+	increment?: number;
+	decrement?: number;
+	multiply?: number;
+	divide?: number;
 };
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -553,6 +655,8 @@ export type UserCreateWithoutSessionsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingCreateNestedManyWithoutPassengerInput;
 	driverBookings?: Prisma.BookingCreateNestedManyWithoutDriverInput;
@@ -567,6 +671,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutPassengerInput;
 	driverBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutDriverInput;
@@ -609,6 +715,8 @@ export type UserUpdateWithoutSessionsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUpdateManyWithoutPassengerNestedInput;
 	driverBookings?: Prisma.BookingUpdateManyWithoutDriverNestedInput;
@@ -623,6 +731,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUncheckedUpdateManyWithoutPassengerNestedInput;
 	driverBookings?: Prisma.BookingUncheckedUpdateManyWithoutDriverNestedInput;
@@ -637,6 +747,8 @@ export type UserCreateWithoutAccountsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingCreateNestedManyWithoutPassengerInput;
 	driverBookings?: Prisma.BookingCreateNestedManyWithoutDriverInput;
@@ -651,6 +763,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutPassengerInput;
 	driverBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutDriverInput;
@@ -693,6 +807,8 @@ export type UserUpdateWithoutAccountsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUpdateManyWithoutPassengerNestedInput;
 	driverBookings?: Prisma.BookingUpdateManyWithoutDriverNestedInput;
@@ -707,6 +823,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUncheckedUpdateManyWithoutPassengerNestedInput;
 	driverBookings?: Prisma.BookingUncheckedUpdateManyWithoutDriverNestedInput;
@@ -721,6 +839,8 @@ export type UserCreateWithoutPassengerBookingsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
 	driverBookings?: Prisma.BookingCreateNestedManyWithoutDriverInput;
@@ -735,6 +855,8 @@ export type UserUncheckedCreateWithoutPassengerBookingsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
 	driverBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutDriverInput;
@@ -757,6 +879,8 @@ export type UserCreateWithoutDriverBookingsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingCreateNestedManyWithoutPassengerInput;
@@ -771,6 +895,8 @@ export type UserUncheckedCreateWithoutDriverBookingsInput = {
 	createdAt: Date | string;
 	updatedAt: Date | string;
 	role?: $Enums.UserRole;
+	latitude?: number | null;
+	longitude?: number | null;
 	sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
 	accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
 	passengerBookings?: Prisma.BookingUncheckedCreateNestedManyWithoutPassengerInput;
@@ -813,6 +939,8 @@ export type UserUpdateWithoutPassengerBookingsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
 	driverBookings?: Prisma.BookingUpdateManyWithoutDriverNestedInput;
@@ -827,6 +955,8 @@ export type UserUncheckedUpdateWithoutPassengerBookingsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
 	driverBookings?: Prisma.BookingUncheckedUpdateManyWithoutDriverNestedInput;
@@ -861,6 +991,8 @@ export type UserUpdateWithoutDriverBookingsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUpdateManyWithoutPassengerNestedInput;
@@ -875,6 +1007,8 @@ export type UserUncheckedUpdateWithoutDriverBookingsInput = {
 	createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+	latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
+	longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null;
 	sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
 	accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
 	passengerBookings?: Prisma.BookingUncheckedUpdateManyWithoutPassengerNestedInput;
@@ -967,6 +1101,8 @@ export type UserSelect<
 		createdAt?: boolean;
 		updatedAt?: boolean;
 		role?: boolean;
+		latitude?: boolean;
+		longitude?: boolean;
 		sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
 		accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>;
 		passengerBookings?: boolean | Prisma.User$passengerBookingsArgs<ExtArgs>;
@@ -989,6 +1125,8 @@ export type UserSelectCreateManyAndReturn<
 		createdAt?: boolean;
 		updatedAt?: boolean;
 		role?: boolean;
+		latitude?: boolean;
+		longitude?: boolean;
 	},
 	ExtArgs["result"]["user"]
 >;
@@ -1006,6 +1144,8 @@ export type UserSelectUpdateManyAndReturn<
 		createdAt?: boolean;
 		updatedAt?: boolean;
 		role?: boolean;
+		latitude?: boolean;
+		longitude?: boolean;
 	},
 	ExtArgs["result"]["user"]
 >;
@@ -1019,6 +1159,8 @@ export type UserSelectScalar = {
 	createdAt?: boolean;
 	updatedAt?: boolean;
 	role?: boolean;
+	latitude?: boolean;
+	longitude?: boolean;
 };
 
 export type UserOmit<
@@ -1032,7 +1174,9 @@ export type UserOmit<
 	| "image"
 	| "createdAt"
 	| "updatedAt"
-	| "role",
+	| "role"
+	| "latitude"
+	| "longitude",
 	ExtArgs["result"]["user"]
 >;
 export type UserInclude<
@@ -1075,6 +1219,8 @@ export type $UserPayload<
 			createdAt: Date;
 			updatedAt: Date;
 			role: $Enums.UserRole;
+			latitude: number | null;
+			longitude: number | null;
 		},
 		ExtArgs["result"]["user"]
 	>;
@@ -1719,6 +1865,8 @@ export interface UserFieldRefs {
 	readonly createdAt: Prisma.FieldRef<"User", "DateTime">;
 	readonly updatedAt: Prisma.FieldRef<"User", "DateTime">;
 	readonly role: Prisma.FieldRef<"User", "UserRole">;
+	readonly latitude: Prisma.FieldRef<"User", "Float">;
+	readonly longitude: Prisma.FieldRef<"User", "Float">;
 }
 
 // Custom InputTypes

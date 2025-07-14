@@ -888,6 +888,8 @@ export const UserScalarFieldEnum = {
 	createdAt: "createdAt",
 	updatedAt: "updatedAt",
 	role: "role",
+	latitude: "latitude",
+	longitude: "longitude",
 } as const;
 
 export type UserScalarFieldEnum =
@@ -958,6 +960,8 @@ export const BookingScalarFieldEnum = {
 	rating: "rating",
 	feedback: "feedback",
 	metadata: "metadata",
+	createdAt: "createdAt",
+	updatedAt: "updatedAt",
 } as const;
 
 export type BookingScalarFieldEnum =

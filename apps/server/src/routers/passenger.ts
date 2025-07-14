@@ -27,7 +27,7 @@ export const passengerRouter = router({
 			return passengerBookings;
 		}),
 
-	feedback: publicProcedure
+	createFeedback: publicProcedure
 		.input(
 			z.object({
 				bookingId: z.string(),

@@ -27,6 +27,11 @@ model Booking {
   feedback String?
 
   metadata Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("booking")
 }
 
 enum BookingStatus {
@@ -35,4 +40,6 @@ enum BookingStatus {
   STARTED
   COMPLETED
   CANCELLED
+
+  @@map("booking_status")
 }

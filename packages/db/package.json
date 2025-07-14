@@ -8,9 +8,6 @@
 	"scripts": {
 		"build": "tsc && tsc-alias",
 		"check-types": "tsc --noEmit",
-		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-		"dev": "bun run --hot src/index.ts",
-		"start": "bun run dist/src/index.js",
 		"db:push": "prisma db push --schema ./prisma/schema",
 		"db:studio": "prisma studio",
 		"db:generate": "prisma generate --schema ./prisma/schema",

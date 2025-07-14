@@ -98,6 +98,24 @@ export const bookingRouter = router({
 				});
 			}
 
+			const notifiedDrivers = await geolocation.getNotifiedDrivers(booking.id);
+
+			if (!notifiedDrivers) {
+				throw new TRPCError({
+					code: "NOT_FOUND",
+					message: "No drivers found near by",
+				});
+			}
+
+			for (const driverId of notifiedDrivers) {
+				const driverSocketId = await geolocation.getDriverSocketId(driverId);
+				if (driverSocketId) {
+					// await socket.to(driverSocketId).emit("Booking_Accepted", booking);
+				} else {
+					// await socket.to(driverSocketId).emit("Booking_Cancelled", booking);
+				}
+			}
+
 			return booking;
 		}),
 });
