@@ -1,0 +1,38 @@
+model Booking {
+  id String @id @default(uuid())
+
+  passengerId String
+  passenger   User   @relation("PassengerBookings", fields: [passengerId], references: [id])
+
+  driverId String?
+  driver   User?   @relation("DriverBookings", fields: [driverId], references: [id])
+
+  sourceLat  Float
+  sourceLong Float
+  destLat    Float
+  destLong   Float
+
+  distanceKm Float?
+  fare       Int?
+  currency   String @default("INR")
+
+  status      BookingStatus @default(PENDING)
+  requestedAt DateTime      @default(now())
+  acceptedAt  DateTime?
+  startedAt   DateTime?
+  completedAt DateTime?
+  cancelledAt DateTime?
+
+  rating   Int?
+  feedback String?
+
+  metadata Json?
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  STARTED
+  COMPLETED
+  CANCELLED
+}

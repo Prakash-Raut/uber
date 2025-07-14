@@ -1,0 +1,28 @@
+{
+	"name": "redis-geo",
+	"main": "src/index.ts",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"build": "tsc && tsc-alias",
+		"check-types": "tsc --noEmit",
+		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+		"dev": "bun run --hot src/index.ts",
+		"start": "bun run dist/src/index.js",
+		"db:push": "prisma db push --schema ./prisma/schema",
+		"db:studio": "prisma studio",
+		"db:generate": "prisma generate --schema ./prisma/schema",
+		"db:migrate": "prisma migrate dev"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.7",
+		"redis": "^5.6.0"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.6",
+		"tsc-alias": "^1.8.11",
+		"typescript": "^5.8.2"
+	}
+}
